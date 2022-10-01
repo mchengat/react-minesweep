@@ -2,36 +2,40 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    node: true,
   },
-  overrides: [
-    {
-      files: ["*.ts", "*.tsx"], // Your TypeScript files extension
-
-      // As mentioned in the comments, you should extend TypeScript plugins here,
-      // instead of extending them outside the `overrides`.
-      // If you don't want to extend any rules, you don't need an `extends` attribute.
-      extends: [
-        "plugin:react/recommended",
-        "plugin:prettier/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-      ],
-
-      parserOptions: {
-        project: ["./tsconfig.json"], // Specify it only for TypeScript files
-      },
-    },
+  extends: [
+    'eslint:recommended',
+    'plugin:prettier/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:@typescript-eslint/recommended',
+    // "plugin:storybook/recommended",
   ],
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: "tsconfig.eslint.json",
-    ignorePatterns: [".eslintrc.js"],
+    ecmaVersion: 12,
+    sourceType: 'module',
   },
-  plugins: ["react", "@typescript-eslint", "prettier"],
-  rules: {},
+  plugins: ['react', '@typescript-eslint', 'prettier'],
+  rules: {
+    'prettier/prettier': ['error', { singleQuote: true }],
+    'react/prop-types': 0,
+  },
+  overrides: [
+    {
+      files: ['webpack.config.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': ['off'],
+      },
+    },
+  ],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 };

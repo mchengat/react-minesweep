@@ -1,4 +1,4 @@
-type Permission = "admin" | "user" | "manager";
+type Permission = 'admin' | 'user' | 'manager';
 type TuplePermissions = [Permission, Permission];
 type BasicUser<A = boolean, P = TuplePermissions> = {
   name: string;
@@ -14,14 +14,14 @@ type AdvancedUser = {
 
 // type FullUser<A = boolean, P = string[]> = BasicUser<A, P> & AdvancedUser;
 
-const perms: TuplePermissions = ["admin", "user"];
+const perms: TuplePermissions = ['admin', 'user'];
 const user: FullUser<boolean> = {
-  name: "Nick",
-  surname: "Ovh",
+  name: 'Nick',
+  surname: 'Ovh',
   age: 30,
   isAdmin: true,
   account: 100,
-  permissions: ["admin"],
+  permissions: ['admin'],
 };
 
 interface DepartmentForPermissions {
@@ -31,15 +31,15 @@ interface DepartmentForPermissions {
 
 const DepsForPerms: Record<Permission, DepartmentForPermissions> = {
   admin: {
-    depName: "security",
+    depName: 'security',
     level: 10,
   },
   user: {
-    depName: "sales",
+    depName: 'sales',
     level: 5,
   },
   manager: {
-    depName: "sales",
+    depName: 'sales',
     level: 10,
   },
 };
@@ -50,8 +50,8 @@ type BasicUserRequired = Required<BasicUser>;
 type BasicUserPartial = Partial<BasicUser>;
 
 type BasicUserReadOnlyRequired = Readonly<Required<BasicUserPartial>>;
-type BasicUserWithoutPermissions = Omit<BasicUser, "permissions">;
-type PermissionsWithoutAdmin = Exclude<Permission, "admin">;
+type BasicUserWithoutPermissions = Omit<BasicUser, 'permissions'>;
+type PermissionsWithoutAdmin = Exclude<Permission, 'admin'>;
 
 function getFirst<T>(arr: T[]): T {
   return arr[0];
